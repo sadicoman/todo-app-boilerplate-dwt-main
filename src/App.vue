@@ -2,7 +2,7 @@
   <main>
     <VTitle tag="h3">Vue Todo List B3G2</VTitle>
 
-    <VTodoAdd />
+    <VTodoAdd @add="addTodo"/>
 
     <ul class="todo-list">
       <VTodoItem
@@ -40,6 +40,15 @@ export default {
       { text: '...', status: 'undone' }
     ])
 
+    const addTodo = (text) => {
+      const newTodo = {
+        text,
+        status: 'undone'
+      }
+
+      todos.value = [...todos.value, newTodo]
+    }
+
     const removeTodo = (index) => {
       const temp = [...todos.value]
 
@@ -67,7 +76,8 @@ export default {
     return {
       todos,
       toggleCheckStatus,
-      removeTodo
+      removeTodo,
+      addTodo
     }
   }
 }
