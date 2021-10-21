@@ -4,7 +4,7 @@
 >
   <button @click="sendCheckStatus">Check</button>
   <span>{{ text }}</span>
-  <button>Supprimer</button>
+  <button @click="sendRemove">Supprimer</button>
 </li>
 </template>
 
@@ -24,8 +24,12 @@ export default {
     const sendCheckStatus = () => {
       emit('check')
     }
+    const sendRemove = () => {
+      emit('remove')
+    }
     return {
-      sendCheckStatus
+      sendCheckStatus,
+      sendRemove
     }
   }
 }

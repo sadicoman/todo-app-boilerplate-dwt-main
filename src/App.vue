@@ -11,6 +11,7 @@
       :text="todo.text"
       :status="todo.status"
       @check="toggleCheckStatus(index)"
+      @remove="removeTodo(index)"
       />
     </ul>
   </main>
@@ -38,6 +39,14 @@ export default {
       { text: '...', status: 'undone' }
     ])
 
+    const removeTodo = (index) => {
+      const temp = [...todos.value]
+
+      temp.splice(index, 1)
+
+      todos.value = temp
+    }
+
     const toggleCheckStatus = (index) => {
       const temp = [...todos.value]
 
@@ -56,7 +65,8 @@ export default {
 
     return {
       todos,
-      toggleCheckStatus
+      toggleCheckStatus,
+      removeTodo
     }
   }
 }
