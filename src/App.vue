@@ -13,6 +13,7 @@
       @check="toggleCheckStatus(index)"
       @remove="removeTodo(index)"
       />
+      <p v-if="todos.length === 0">Il n'y a plus rien à faire</p>
     </ul>
   </main>
 </template>
