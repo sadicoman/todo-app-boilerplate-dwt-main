@@ -1,6 +1,8 @@
 <template>
-<li class="v-todo-item">
-  <button>Check</button>
+<li
+  class="v-todo-item" :class="{ 'is-checked': status === 'done' }"
+>
+  <button @click="sendCheckStatus">Check</button>
   <span>{{ text }}</span>
   <button>Supprimer</button>
 </li>
@@ -18,8 +20,13 @@ export default {
       required: true
     }
   },
-  setup () {
-    return {}
+  setup (props, { emit }) {
+    const sendCheckStatus = () => {
+      emit('check')
+    }
+    return {
+      sendCheckStatus
+    }
   }
 }
 </script>

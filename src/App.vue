@@ -9,6 +9,8 @@
       v-for="(todo, index) in todos"
       :key="index"
       :text="todo.text"
+      :status="todo.status"
+      @check="toggleCheckStatus(index)"
       />
     </ul>
   </main>
@@ -36,8 +38,25 @@ export default {
       { text: '...', status: 'undone' }
     ])
 
+    const toggleCheckStatus = (index) => {
+      const temp = [...todos.value]
+
+      // if (temp[index].status === 'done') {
+      //   temp[index].status = 'undone'
+      // } else {
+      //   temp[index].status = 'done'
+      // }
+
+      temp[index].status = temp[index].status === 'undone'
+        ? 'done'
+        : 'undone'
+
+      todos.value = temp
+    }
+
     return {
-      todos
+      todos,
+      toggleCheckStatus
     }
   }
 }
