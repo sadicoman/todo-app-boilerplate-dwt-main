@@ -23,7 +23,7 @@ import VTitle from './components/VTitle'
 import VTodoAdd from './components/VTodoAdd'
 import VTodoItem from './components/VTodoItem'
 
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 export default {
   name: 'App',
@@ -72,6 +72,17 @@ export default {
 
       todos.value = temp
     }
+
+    watch(todos, (val) => {
+      window.localStorage.setItem('todos', JSON.stringify(val))
+    })
+
+    onMounted(() => {
+      const todosFromStorage = window.localStorage.getItem('todos')
+      if (todosFromStorage) {
+        todos.value = JSON.parse(todosFromStorage)
+      }
+    })
 
     return {
       todos,
